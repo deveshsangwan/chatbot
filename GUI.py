@@ -1,7 +1,7 @@
 #Creating GUI with tkinter
 import tkinter
 from tkinter import *
-from chatbot import chat
+from chatbot import chat1
 
 def send():
     msg = EntryBox.get("1.0",'end-1c').strip()
@@ -10,7 +10,7 @@ def send():
         ChatLog.config(state=NORMAL)
         ChatLog.insert(END, "You: " + msg + '\n\n')
         ChatLog.config(foreground="#442265", font=("Verdana", 12 ))
-        res = chat(msg)
+        res = chat1(msg)
         ChatLog.insert(END, "Bot: " + res + '\n\n')
         ChatLog.config(state=DISABLED)
         ChatLog.yview(END)

@@ -96,7 +96,7 @@ def bag_of_words(s, words):
     return numpy.array(bag)
 
 
-def chat(msg):
+def chat1(msg):
     print("Start talking with the bot (type quit to stop)!")
     while True:
         inp = msg
@@ -113,4 +113,25 @@ def chat(msg):
 
         return (random.choice(responses))
 
-#chat(msg)
+def chat():
+    print("Start talking with the bot (type quit to stop)!")
+    while True:
+        inp = input("You:")
+        if inp.lower() == "quit":
+            break
+
+        results = model.predict([bag_of_words(inp, words)])
+        results_index = numpy.argmax(results)
+        tag = labels[results_index]
+
+        for tg in data["intents"]:
+            if tg['tag'] == tag:
+                responses = tg['responses']
+
+        print((random.choice(responses)))
+
+def main():
+    chat()
+
+if __name__ == '__main__':
+    main()
